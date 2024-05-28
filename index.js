@@ -1,24 +1,28 @@
 
-// Import the inquirer package
-const inquirer = require("inquirer");
-// Import the fs package
+const inquirer = require('inquirer');
 const fs = require("fs");
-
 const { Triangle, Square, Circle } = require("./lib/shapes.js");
 
-let shape;
+
 
 // Prompt the user to enter up to three characters
-inquirer
-  .prompt([
+let prompts = [
     {
       type: "input",
       message: "Enter up to three characters:",
       name: "characters",
+      validate: function (value) {
+        if (value.length <= 3) {
+            return true;
+        } else {
+            return 'Please enter up to three characters.';
+        }
+    }
     },
     {
-      type: "input",
+      type: "list",
       message: "Enter a text color:",
+      choices: ["red", "green", "blue"],
       name: "textColor",
     },
     {
@@ -28,12 +32,15 @@ inquirer
       name: "shape",
     },
     {
-      type: "input",
+      type: "list",
       message: "Enter a shape color:",
+      choices: ["red", "green", "blue"],
       name: "shapeColor",
-    },
-  ])
-  .then((response) => {
+    }
+  ];
+  
+  inquirer.prompt(prompts).then(response => {
+    let shape;
     // Create a new shape based on the user's choice
     if (response.shape === "Circle") {
       shape = new Circle(50, response.shapeColor, response.textColor, response.characters);
