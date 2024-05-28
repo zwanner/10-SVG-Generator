@@ -3,6 +3,8 @@
  ![License](https://img.shields.io/badge/License-MIT-blue.svg)
  
  This project prompts the user with options to generate a simple SVG logo. It then creates the logo as logo.svg.
+
+ [VIDEO](https://youtu.be/NHgLXIr7_0o)
 ## Table of Contents
  * [Installation](#installation)
  * [Usage](#usage)
